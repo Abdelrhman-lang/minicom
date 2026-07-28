@@ -1,17 +1,12 @@
 "use client";
-
-import {
-  MagnifyingGlassIcon,
-  ShoppingCartIcon,
-  StarIcon,
-  UserIcon,
-} from "@phosphor-icons/react";
+import { motion } from "framer-motion";
+import { MagnifyingGlassIcon, StarIcon, UserIcon } from "@phosphor-icons/react";
 import CartButton from "../../shared/cart-btn/CartButton";
 
 const actions = [
-  { id: 1, icon: MagnifyingGlassIcon },
-  { id: 2, icon: UserIcon },
-  { id: 3, icon: StarIcon },
+  { id: 1, icon: MagnifyingGlassIcon, label: "Search" },
+  { id: 2, icon: UserIcon, label: "Login / Sign Up" },
+  { id: 3, icon: StarIcon, label: "Faviouate" },
 ];
 function HeaderActions() {
   return (
@@ -20,7 +15,15 @@ function HeaderActions() {
         {actions.map((action) => {
           return (
             <li className="" key={action.id}>
-              <action.icon size={26} className="text-primary cursor-pointer" />
+              <motion.button
+                whileHover={{
+                  scale: [1, 1.2, 1],
+                }}
+                aria-label={action.label}
+                className="cursor-pointer "
+              >
+                <action.icon size={25} />
+              </motion.button>
             </li>
           );
         })}
