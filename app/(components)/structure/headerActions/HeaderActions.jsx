@@ -2,17 +2,18 @@
 import { motion } from "framer-motion";
 import { MagnifyingGlassIcon, StarIcon, UserIcon } from "@phosphor-icons/react";
 import CartButton from "../../shared/cart-btn/CartButton";
+import Search from "../../features/search/Search";
 
 const actions = [
-  { id: 1, icon: MagnifyingGlassIcon, label: "Search" },
   { id: 2, icon: UserIcon, label: "Login / Sign Up" },
   { id: 3, icon: StarIcon, label: "Faviouate" },
 ];
 function HeaderActions() {
   return (
-    <div className="hidden lg:flex">
-      <ul className="flex items-center gap-9 me-9">
-        {actions.map((action) => {
+    <div className="flex">
+      <ul className="lg:flex items-center gap-9 me-9 hidden">
+        <Search />
+        {/* {actions.map((action) => {
           return (
             <li className="" key={action.id}>
               <motion.button
@@ -26,7 +27,7 @@ function HeaderActions() {
               </motion.button>
             </li>
           );
-        })}
+        })} */}
       </ul>
 
       <CartButton />

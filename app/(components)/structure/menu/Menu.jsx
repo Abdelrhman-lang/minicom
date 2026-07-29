@@ -10,9 +10,10 @@ import {
 } from "@phosphor-icons/react";
 import { useDispatch, useSelector } from "react-redux";
 import Overlay from "../../shared/overlay/Overlay";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import Search from "../../features/search/Search";
 
 const links = [
   { id: 1, title: "home", href: "/" },
@@ -42,19 +43,24 @@ function Menu() {
       document.body.style.overflow = "unset";
     };
   }, [isMenuOpen]);
+
   return (
     <div className="lg:hidden">
       <Overlay
         fn={() => dispatch(closeMenu())}
         className={`${isMenuOpen ? "opacity-100 visible pointer-events-auto" : "opacity-0 invisible pointer-events-none"}`}
       />
-      <button
-        aria-label="Open Menu"
-        className="flex items-center justify-center"
-        onClick={() => dispatch(openMenu())}
-      >
-        <ListIcon size={30} />
-      </button>
+      <div className="flex items-center gap-3">
+        <button
+          aria-label="Open Menu"
+          className="flex items-center justify-center"
+          onClick={() => dispatch(openMenu())}
+        >
+          <ListIcon size={25} />
+        </button>
+        <Search />
+      </div>
+
       <div
         className={`bg-white pt-10 px-5 pb-5 shadow-md z-50 w-3/4 max-w-xs h-full fixed top-0 ${isMenuOpen ? "left-0" : "-left-full"} transition-all duration-700 ease-in-out`}
       >

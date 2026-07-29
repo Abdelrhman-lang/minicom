@@ -13,9 +13,9 @@ function CartButton() {
       <button
         aria-label="Cart Button"
         onClick={() => dispatch(openCart())}
-        className="w-14 h-14 cursor-pointer rounded-full flex items-center justify-center bg-primary text-white relative transition-colors duration-200 hover:bg-secondary hover:text-primary"
+        className="lg:w-14 lg:h-14 cursor-pointer lg:rounded-full flex items-center justify-center lg:bg-primary text-primary lg:text-white relative transition-colors duration-200 hover:bg-secondary hover:text-primary"
       >
-        <span className="absolute top-0 right-0 bg-secondary text-primary w-5 h-5 rounded-full flex items-center justify-center text-xs ">
+        <span className="absolute -top-4 lg:top-0 right-0 bg-secondary text-primary w-5 h-5 rounded-full flex items-center justify-center text-xs ">
           0
         </span>
         <ShoppingCartIcon size={25} />
