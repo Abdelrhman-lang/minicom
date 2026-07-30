@@ -2,6 +2,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import Header from "../../layout/header/Header";
+import Landing from "../../structure/landing/Landing";
 function StickyContent() {
   const stickyContentRef = useRef(null);
   const { scrollYProgress } = useScroll({
@@ -21,10 +22,12 @@ function StickyContent() {
         borderTopLeftRadius: borderRadious,
         borderTopRightRadius: borderRadious,
       }}
-      className="relative z-50 bg-white shadow-md min-h-screen"
+      className="relative z-40 bg-white shadow-md min-h-screen"
     >
       <Header />
-      <div className="container"></div>
+      <div className="container">
+        <Landing />
+      </div>
     </motion.section>
   );
 }

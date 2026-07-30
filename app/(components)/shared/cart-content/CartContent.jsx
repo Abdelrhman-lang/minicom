@@ -11,6 +11,7 @@ function CartContent({ items }) {
             width={200}
             height={250}
             alt="cart-empty"
+            className="object-cover"
           />
         </div>
         <div className="text-center">

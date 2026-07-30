@@ -1,8 +1,7 @@
-"use client";
-import { XIcon } from "@phosphor-icons/react";
-import React from "react";
-
-function CartHeader({ dispatch, closeCart, items }) {
+import CloseBtn from "../close-btn/CloseBtn";
+import { closeCart } from "@/RTK/slices/cartSlice";
+import { IoMdClose } from "react-icons/io";
+function CartHeader({ dispatch, items }) {
   return (
     <div className="flex items-center justify-between p-5">
       <div className="flex items-center gap-5">
@@ -13,13 +12,12 @@ function CartHeader({ dispatch, closeCart, items }) {
         </p>
       </div>
       <div>
-        <button
-          aria-label="Close Cart"
-          onClick={() => dispatch(closeCart())}
-          className="w-10 h-10 rounded-full bg-white shadow-lg flex items-center justify-center"
-        >
-          <XIcon size={20} />
-        </button>
+        <CloseBtn
+          ariaLabel={`Close Cart`}
+          fn={() => dispatch(closeCart())}
+          className={`w-10 h-10 rounded-full bg-white shadow-lg flex items-center justify-center`}
+          icon={<IoMdClose size={25} />}
+        />
       </div>
     </div>
   );
