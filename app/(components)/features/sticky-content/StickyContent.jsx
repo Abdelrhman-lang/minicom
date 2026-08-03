@@ -3,6 +3,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import Header from "../../layout/header/Header";
 import Landing from "../../structure/landing/Landing";
+import Services from "../../structure/services-sec/Services";
 function StickyContent() {
   const stickyContentRef = useRef(null);
   const { scrollYProgress } = useScroll({
@@ -27,6 +28,7 @@ function StickyContent() {
       <Header />
       <div className="container">
         <Landing />
+        <Services />
       </div>
     </motion.section>
   );

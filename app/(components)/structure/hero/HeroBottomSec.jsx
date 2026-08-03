@@ -7,7 +7,7 @@ function HeroBottomSec() {
     <div className="absolute bottom-5 w-full">
       <div className="container">
         <div className="flex items-center justify-between pt-9 border-t">
-          <div className="space-y-2.5 max-w-[550px]">
+          <div className="space-y-2.5 max-w-137.5">
             <h6 className="font-semibold text-[10px] tracking-[1px] uppercase text-white">
               TIMELESS ARTISTRY IN EVERY PIECE
             </h6>
