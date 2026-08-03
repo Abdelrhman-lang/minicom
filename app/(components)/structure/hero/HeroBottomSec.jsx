@@ -16,7 +16,10 @@ function HeroBottomSec() {
             </h2>
           </div>
           <div>
-            <MainButton />
+            <MainButton
+              className="bg-white px-4 w-[clamp(126px,15vw,140px)] h-10.25 rounded-[3px] flex items-center justify-center cursor-pointer"
+              title="shop now"
+            />
           </div>
         </div>
       </div>
