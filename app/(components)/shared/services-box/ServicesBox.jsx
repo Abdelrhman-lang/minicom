@@ -35,20 +35,48 @@ const boxs = [
     image: Idea,
   },
 ];
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.2,
+    },
+  },
+};
+
+const boxVariants = {
+  hidden: { opacity: 0, y: 50 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+    },
+  },
+};
 
 function ServicesBox() {
   return (
-    <>
+    <motion.div
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: false, amount: 0.2 }}
+      variants={containerVariants}
+      className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5"
+    >
       {boxs.map((box) => {
         return (
           <motion.div
-            initial="rest"
-            whileHover={"hover"}
-            animate="rest"
+            variants={boxVariants}
             key={box.id}
             className="flex md:flex-col items-start gap-6 group cursor-pointer"
           >
-            <div className="w-20 h-20 bg-[#f5f5f5] rounded-full flex items-center justify-center shrink-0">
+            <motion.div
+              initial="rest"
+              whileHover="hover"
+              animate="rest"
+              className="w-20 h-20 bg-[#f5f5f5] rounded-full flex items-center justify-center shrink-0"
+            >
               <motion.div
                 variants={{
                   rest: { x: 0, rotate: 0 },
@@ -64,7 +92,7 @@ function ServicesBox() {
                   className="object-cover w-8 h-8"
                 />
               </motion.div>
-            </div>
+            </motion.div>
 
             <div className="space-y-2.5">
               <h3 className="text-sm lg:text-lg text-primary font-bold">
@@ -77,7 +105,7 @@ function ServicesBox() {
           </motion.div>
         );
       })}
-    </>
+    </motion.div>
   );
 }
 

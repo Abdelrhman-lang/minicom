@@ -5,6 +5,8 @@ import Header from "../../layout/header/Header";
 import Landing from "../../structure/landing/Landing";
 import Services from "../../structure/services-sec/Services";
 import CategorySection from "../../structure/category-sec/CategorySection";
+import DiscoverSection from "../../structure/discover-sec/DiscoverSection";
+import CollectionSection from "../../structure/collection-sec/CollectionSection";
 function StickyContent() {
   const stickyContentRef = useRef(null);
   const { scrollYProgress } = useScroll({
@@ -31,6 +33,10 @@ function StickyContent() {
         <Landing />
         <Services />
         <CategorySection />
+      </div>
+      <DiscoverSection />
+      <div className="container">
+        <CollectionSection />
       </div>
     </motion.section>
   );
