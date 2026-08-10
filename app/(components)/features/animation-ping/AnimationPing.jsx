@@ -4,6 +4,8 @@ function AnimationPing({
   xPositionForContent,
   xPositionForArrow,
   arrowDirction,
+  contentTitle,
+  contentDesc,
 }) {
   return (
     <div
@@ -16,8 +18,15 @@ function AnimationPing({
       >
         <div className="bg-white px-10 py-9 rounded-[20px]">
           <span
-            className={`absolute top-1/2 -translate-y-1/2 ${xPositionForArrow} border-13  ${arrowDirction}`}
+            className={`absolute top-1/2 -translate-y-1/2 ${xPositionForArrow} border-13 ${arrowDirction}`}
           ></span>
+
+          <div>
+            <h4 className="font-bold mb-5">{contentTitle}</h4>
+            <p className="text-xs text-muted leading-[1.7] max-w-3xs">
+              {contentDesc}
+            </p>
+          </div>
         </div>
       </div>
     </div>

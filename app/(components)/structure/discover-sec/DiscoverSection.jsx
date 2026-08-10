@@ -1,4 +1,3 @@
-"use client";
 import DiscoverTitle from "./DiscoverTitle";
 import Sofa from "@/public/imgs/sofa2.webp";
 import Image from "next/image";
@@ -13,6 +12,9 @@ const animation = [
     xArrow: "-left-6",
     arrowDirc:
       "border-r-white border-t-transparent border-b-transparent border-l-transparent",
+
+    title: "Solid Wood Frame",
+    desc: "Crafted from carefully selected solid wood, the frame provides exceptional strength and long-lasting support, ensuring your sofa stands the test of time.",
   },
   {
     id: 2,
@@ -22,6 +24,8 @@ const animation = [
     xArrow: "-right-6",
     arrowDirc:
       "border-l-white border-t-transparent border-b-transparent border-r-transparent",
+    title: "Premium Fabric",
+    desc: "Our sofa is upholstered in high-quality fabric that’s soft to the touch, breathable, and resistant to wear—bringing comfort and durability to your everyday living.",
   },
   {
     id: 3,
@@ -31,6 +35,8 @@ const animation = [
     xArrow: "-right-6",
     arrowDirc:
       "border-l-white border-t-transparent border-b-transparent border-r-transparent",
+    title: "Sturdy Armrests",
+    desc: "Designed with well-built armrests that offer both structural stability and everyday comfort—perfect for relaxing, reading, or unwinding in style.",
   },
 ];
 function DiscoverSection() {
@@ -52,6 +58,8 @@ function DiscoverSection() {
                 xPositionForContent={item.x}
                 xPositionForArrow={item.xArrow}
                 arrowDirction={item.arrowDirc}
+                contentTitle={item.title}
+                contentDesc={item.desc}
               />
             );
           })}

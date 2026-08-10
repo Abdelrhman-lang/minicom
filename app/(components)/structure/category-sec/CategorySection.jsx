@@ -1,6 +1,4 @@
 "use client";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
 
 import SectionHeader from "../../shared/section-header/SectionHeader";
 import CategoryFilter from "../../features/category-filter/CategoryFilter";
@@ -10,16 +8,21 @@ import Lounge from "@/public/imgs/lounge.webp";
 import Sofa from "@/public/imgs/sofa.webp";
 import Storage from "@/public/imgs/storage.webp";
 import TvStand from "@/public/imgs/tv-stand.webp";
-import ImageBox from "../../shared/image-box/ImageBox";
 import { useState } from "react";
 import SwiperBtns from "../../shared/swiper-btns/SwiperBtns";
+import SwiperComponent from "../../features/swiper/SwiperComponent";
 const slides = [
-  { id: 1, imageSrc: Chair, alt: "chair" },
-  { id: 2, imageSrc: CofeeTable, alt: "cofee-table" },
-  { id: 3, imageSrc: Lounge, alt: "lounge" },
-  { id: 4, imageSrc: Sofa, alt: "sofa" },
-  { id: 5, imageSrc: Storage, alt: "storage" },
-  { id: 6, imageSrc: TvStand, alt: "tv-stand" },
+  { id: 1, imageSrc: Chair, alt: "chair", text: "armchair" },
+  { id: 2, imageSrc: CofeeTable, alt: "cofee-table", text: "cofee tables" },
+  { id: 3, imageSrc: Lounge, alt: "lounge", text: "lounge chair" },
+  { id: 4, imageSrc: Sofa, alt: "sofa", text: "sofa" },
+  { id: 5, imageSrc: Storage, alt: "storage", text: "storage cabinets" },
+  {
+    id: 6,
+    imageSrc: TvStand,
+    alt: "tv-stand",
+    text: "tv stands & media units",
+  },
 ];
 function CategorySection() {
   const [swiperInstance, setSwiperInstance] = useState(null);
@@ -35,39 +38,10 @@ function CategorySection() {
           <CategoryFilter />
         </div>
         <div className="flex-1 overflow-hidden">
-          <Swiper
-            className="swiper"
-            onSwiper={setSwiperInstance}
-            slidesPerView={3}
-            slidesPerGroup={3}
-            spaceBetween={25}
-            slidesPerGroupAuto={false}
-            speed={800}
-            breakpoints={{
-              320: {
-                slidesPerView: 1,
-                slidesPerGroup: 1,
-              },
-              768: {
-                slidesPerView: 2,
-                slidesPerGroup: 2,
-                spaceBetween: 22,
-              },
-              1024: {
-                slidesPerView: 3,
-                slidesPerGroup: 3,
-                spaceBetween: 25,
-              },
-            }}
-          >
-            {slides.map((slide) => {
-              return (
-                <SwiperSlide key={slide.id}>
-                  <ImageBox imgSrc={slide.imageSrc} imageAlt={slide.alt} />
-                </SwiperSlide>
-              );
-            })}
-          </Swiper>
+          <SwiperComponent
+            setSwiperInstance={setSwiperInstance}
+            slides={slides}
+          />
         </div>
       </div>
     </div>
