@@ -1,13 +1,12 @@
-import { Button } from "@/components/ui/button";
 import React from "react";
 import MainButton from "../../shared/main-btn/MainButton";
 
 function HeroBottomSec() {
   return (
-    <div className="absolute bottom-20 md:bottom-10 w-full">
+    <div className="absolute bottom-12 md:bottom-10 w-full">
       <div className="container">
         <div className="flex items-center justify-between pt-9 border-t">
-          <div className="space-y-2.5 max-w-137.5">
+          <div className="space-y-2.5 max-w-37.5 md:max-w-137.5">
             <h6 className="font-semibold text-[10px] tracking-[1px] uppercase text-white">
               TIMELESS ARTISTRY IN EVERY PIECE
             </h6>
