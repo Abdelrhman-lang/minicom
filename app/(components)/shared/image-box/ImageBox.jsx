@@ -10,7 +10,7 @@ function ImageBox({ imgSrc = "", imageAlt = "", text = "" }) {
     <div className={`${containDivStyle} relative`}>
       <Image src={imgSrc} alt={imageAlt} className={imgStyle} />
 
-      <div className="absolute left-1/2 -translate-x-1/2 bottom-6">
+      <div className="absolute left-1/2 -translate-x-1/2 bottom-3 md:bottom-6">
         <p className="text-[10px] uppercase font-semibold">{text}</p>
       </div>
     </div>
