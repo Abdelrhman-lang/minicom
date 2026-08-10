@@ -4,7 +4,7 @@ import MainButton from "../../shared/main-btn/MainButton";
 
 function HeroBottomSec() {
   return (
-    <div className="absolute bottom-5 w-full">
+    <div className="absolute bottom-10 w-full">
       <div className="container">
         <div className="flex items-center justify-between pt-9 border-t">
           <div className="space-y-2.5 max-w-137.5">
