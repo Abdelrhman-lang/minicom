@@ -4,7 +4,7 @@ import HeroBottomSec from "./HeroBottomSec";
 
 function Hero() {
   return (
-    <div className="sticky z-10  h-screen inset-0">
+    <div className="sticky z-10 min-h-screen inset-0">
       <video
         className="w-full h-screen object-cover object-center"
         autoPlay
