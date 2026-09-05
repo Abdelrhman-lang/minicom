@@ -3,6 +3,7 @@ import {
   integer,
   numeric,
   pgTable,
+  primaryKey,
   text,
   timestamp,
   varchar,
@@ -30,12 +31,9 @@ export const subCategoriesTable = pgTable("sub_categories", {
   id: text("id")
     .primaryKey()
     .default(sql`gen_random_uuid()`),
-
   name: varchar("sub_category_name").notNull(),
-  slug: varchar("slug").notNull().unique(),
-  categoryId: text("category_id")
-    .notNull()
-    .references(() => categoriesTable.id),
+  slug: varchar("slug").notNull(),
+  image: varchar("sub_categorie_image"),
 });
 
 export const productsTable = pgTable("products", {
@@ -49,17 +47,47 @@ export const productsTable = pgTable("products", {
     .references(() => subCategoriesTable.id),
 });
 
-// RELATIONS
+// ============ JUNCTION TABLE (many-to-many) ============
+export const categoriesToSubCategoriesTable = pgTable(
+  "categories_to_sub_categories",
+  {
+    categoryId: text("category_id")
+      .notNull()
+      .references(() => categoriesTable.id, { onDelete: "cascade" }),
+    subCategoryId: text("sub_category_id")
+      .notNull()
+      .references(() => subCategoriesTable.id, { onDelete: "cascade" }),
+  },
+  (t) => [primaryKey({ columns: [t.categoryId, t.subCategoryId] })],
+);
+
+// ============ RELATIONS ============
 export const dbRelations = defineRelations(
-  { categoriesTable, subCategoriesTable, productsTable },
+  {
+    categoriesTable,
+    subCategoriesTable,
+    productsTable,
+    categoriesToSubCategoriesTable,
+  },
   (r) => ({
     categoriesTable: {
-      subCategories: r.many.subCategoriesTable(),
+      subCategories: r.many.subCategoriesTable({
+        from: r.categoriesTable.id.through(
+          r.categoriesToSubCategoriesTable.categoryId,
+        ),
+        to: r.subCategoriesTable.id.through(
+          r.categoriesToSubCategoriesTable.subCategoryId,
+        ),
+      }),
     },
     subCategoriesTable: {
-      category: r.one.categoriesTable({
-        from: r.subCategoriesTable.categoryId,
-        to: r.categoriesTable.id,
+      categories: r.many.categoriesTable({
+        from: r.subCategoriesTable.id.through(
+          r.categoriesToSubCategoriesTable.subCategoryId,
+        ),
+        to: r.categoriesTable.id.through(
+          r.categoriesToSubCategoriesTable.categoryId,
+        ),
       }),
       products: r.many.productsTable(),
     },

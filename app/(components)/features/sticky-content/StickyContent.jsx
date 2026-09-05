@@ -7,6 +7,7 @@ import Services from "../../structure/services-sec/Services";
 import CategorySection from "../../structure/category-sec/CategorySection";
 import DiscoverSection from "../../structure/discover-sec/DiscoverSection";
 import CollectionSection from "../../structure/collection-sec/CollectionSection";
+import PopularPrductsSection from "../../structure/popularProducts-sec/PopularPrductsSection";
 function StickyContent() {
   const stickyContentRef = useRef(null);
   const { scrollYProgress } = useScroll({
@@ -37,6 +38,7 @@ function StickyContent() {
       <DiscoverSection />
       <div className="container">
         <CollectionSection />
+        <PopularPrductsSection />
       </div>
     </motion.section>
   );
