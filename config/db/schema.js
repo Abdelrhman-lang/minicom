@@ -42,6 +42,8 @@ export const productsTable = pgTable("products", {
     .default(sql`gen_random_uuid()`),
   title: varchar("product_name").notNull(),
   price: numeric("product_price", { precision: 10, scale: 2 }).notNull(),
+  image: varchar("product_image"),
+  sku: varchar("product_sku"),
   subCategoryId: text("sub_category_id")
     .notNull()
     .references(() => subCategoriesTable.id),

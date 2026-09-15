@@ -5,7 +5,7 @@ import MainButton from "../../shared/main-btn/MainButton";
 
 function BoxForImage() {
   return (
-    <div className="bg-image pt-8 xl:pt-14 pb-5 px-5 xl:h-112.5">
+    <div className="bg-image pt-8 xl:pt-14 pb-5 px-5">
       <div className="flex flex-col justify-between h-full">
         <div className="mb-9">
           <span className="text-[10px] md:text-xs text-secondary uppercase ">

@@ -154,6 +154,7 @@
   background-position: center;
   background-repeat: no-repeat;
   border-radius: 10px;
+  height: 100%;
 }
 
 @keyframes marquee {

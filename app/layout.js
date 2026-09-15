@@ -1,6 +1,6 @@
 import { DM_Sans } from "next/font/google";
 import "./globals.css";
-import Header from "./(components)/layout/header/Header";
+
 import { ReduxProvider } from "@/RTK/Provider";
 import ToUpBtn from "./(components)/features/toup-btn/ToUpBtn";
 import QueryProvider from "./(components)/providers/QueryProvider";
