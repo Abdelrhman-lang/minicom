@@ -49,6 +49,16 @@ export const productsTable = pgTable("products", {
     .references(() => subCategoriesTable.id),
 });
 
+export const reviewsTable = pgTable("reviews", {
+  id: integer("id").primaryKey().generatedAlwaysAsIdentity(),
+  name: varchar("customer_name").notNull(),
+  countery: text("custoner_countery").notNull(),
+  image: varchar("customer_image").notNull(),
+  stars: integer("rate"),
+  text: varchar("customer_text").notNull(),
+  comment: varchar("customer_comment"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
 // ============ JUNCTION TABLE (many-to-many) ============
 export const categoriesToSubCategoriesTable = pgTable(
   "categories_to_sub_categories",

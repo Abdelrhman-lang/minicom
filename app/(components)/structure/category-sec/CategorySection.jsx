@@ -47,7 +47,13 @@ function CategorySection() {
         </div>
         <div className="flex-1 overflow-hidden">
           {/* <button onClick={() => console.log(data.categories)}>click</button> */}
-          <SwiperComponent setSwiperInstance={setSwiperInstance}>
+          <SwiperComponent
+            setSwiperInstance={setSwiperInstance}
+            slidesPerViewLarge={3}
+            slidesPerViewSmall={2}
+            slidesPerGroupSmall={2}
+            slidesPerGroupLarge={3}
+          >
             {currentSubCategories.map((item) => (
               <SwiperSlide key={item.id}>
                 <ImageBox

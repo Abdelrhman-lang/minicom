@@ -8,6 +8,10 @@ import CategorySection from "../../structure/category-sec/CategorySection";
 import DiscoverSection from "../../structure/discover-sec/DiscoverSection";
 import CollectionSection from "../../structure/collection-sec/CollectionSection";
 import PopularPrductsSection from "../../structure/popularProducts-sec/PopularPrductsSection";
+import LookSection from "../../structure/look-sec/LookSection";
+import ReviewSection from "../../structure/review-sec/ReviewSection";
+import PartnersSection from "../../structure/partners-sec/PartnersSection";
+import OurStorySection from "../../structure/ourStory-sec/OurStorySection";
 function StickyContent() {
   const stickyContentRef = useRef(null);
   const { scrollYProgress } = useScroll({
@@ -39,7 +43,11 @@ function StickyContent() {
       <div className="container">
         <CollectionSection />
         <PopularPrductsSection />
+        <LookSection />
       </div>
+      <ReviewSection />
+      <PartnersSection />
+      <OurStorySection />
     </motion.section>
   );
 }

@@ -2,7 +2,14 @@
 import { Swiper } from "swiper/react";
 import "swiper/css";
 import { motion, AnimatePresence } from "framer-motion";
-function SwiperComponent({ setSwiperInstance, children }) {
+function SwiperComponent({
+  setSwiperInstance,
+  children,
+  slidesPerViewLarge,
+  slidesPerViewSmall,
+  slidesPerGroupSmall,
+  slidesPerGroupLarge,
+}) {
   const swiperVarienst = {
     hidden: { opacity: 0, y: 50 },
     visible: {
@@ -31,14 +38,14 @@ function SwiperComponent({ setSwiperInstance, children }) {
           speed={800}
           breakpoints={{
             320: {
-              slidesPerView: 2,
-              slidesPerGroup: 2,
+              slidesPerView: slidesPerViewSmall,
+              slidesPerGroup: slidesPerGroupSmall,
               spaceBetween: 20,
             },
 
             1024: {
-              slidesPerView: 3,
-              slidesPerGroup: 3,
+              slidesPerView: slidesPerViewLarge,
+              slidesPerGroup: slidesPerGroupLarge,
               spaceBetween: 25,
             },
           }}

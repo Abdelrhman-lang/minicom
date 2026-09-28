@@ -32,7 +32,7 @@ const PopularPrductsSection = () => {
     );
   }
   return (
-    <section className="pb-20">
+    <section className="pb-30">
       <div className="flex flex-col gap-y-5 items-center md:flex-row justify-between">
         <SectionHeader title="most popular products" />
         <SwiperBtns swiper={swiperInstance} />
@@ -44,7 +44,13 @@ const PopularPrductsSection = () => {
         </div>
         <div className="md:col-span-7">
           {/* <button onClick={() => console.log(data.products)}>click</button> */}
-          <SwiperComponent setSwiperInstance={setSwiperInstance}>
+          <SwiperComponent
+            setSwiperInstance={setSwiperInstance}
+            slidesPerViewLarge={3}
+            slidesPerViewSmall={2}
+            slidesPerGroupSmall={2}
+            slidesPerGroupLarge={3}
+          >
             {data.products.map((product) => {
               return (
                 <SwiperSlide key={product.id}>
