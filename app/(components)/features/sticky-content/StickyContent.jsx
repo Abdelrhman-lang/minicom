@@ -12,6 +12,8 @@ import LookSection from "../../structure/look-sec/LookSection";
 import ReviewSection from "../../structure/review-sec/ReviewSection";
 import PartnersSection from "../../structure/partners-sec/PartnersSection";
 import OurStorySection from "../../structure/ourStory-sec/OurStorySection";
+import Footer from "../../structure/footer/Footer";
+import Copyright from "../../structure/copyright/Copyright";
 function StickyContent() {
   const stickyContentRef = useRef(null);
   const { scrollYProgress } = useScroll({
@@ -48,6 +50,8 @@ function StickyContent() {
       <ReviewSection />
       <PartnersSection />
       <OurStorySection />
+      <Footer />
+      <Copyright />
     </motion.section>
   );
 }

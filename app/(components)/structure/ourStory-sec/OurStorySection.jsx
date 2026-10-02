@@ -6,7 +6,7 @@ import { IoIosArrowDown } from "react-icons/io";
 function OurStorySection() {
   const [isTextShowed, setIsTextShowed] = useState(false);
   return (
-    <section className="pb-20 bg-[#f3f3f3]">
+    <section className="pb-30 bg-[#f3f3f3]">
       <div className="container">
         <div className="flex flex-col gap-3 items-center justify-center mb-6.25">
           <SectionSubHeader text={"our story"} />
