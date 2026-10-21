@@ -29,7 +29,7 @@ function ReviewSection() {
       <div className="container">
         <div className="space-y-4">
           <SectionSubHeader text={"5.00 from 123 reviews"} />
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col md:flex-row gap-y-5 items-center justify-between">
             <SectionHeader title="what customars say" />
             <SwiperBtns swiper={swiperInstance} />
           </div>

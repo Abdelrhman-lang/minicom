@@ -8,7 +8,7 @@ import {
   timestamp,
   varchar,
 } from "drizzle-orm/pg-core";
-
+import { check, unique } from "drizzle-orm/pg-core";
 export const usersTable = pgTable("users", {
   id: text()
     .primaryKey()
@@ -59,6 +59,35 @@ export const reviewsTable = pgTable("reviews", {
   comment: varchar("customer_comment"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
+
+export const cartsTable = pgTable("carts", {
+  id: text("id")
+    .primaryKey()
+    .default(sql`gen_random_uuid()`),
+  userId: text("user_id").notNull().unique(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+export const cartItemsTable = pgTable(
+  "cart_items",
+  {
+    id: text("id")
+      .primaryKey()
+      .default(sql`gen_random_uuid()`),
+    cartId: text("cart_id")
+      .notNull()
+      .references(() => cartsTable.id, { onDelete: "cascade" }),
+    productId: text("product_id")
+      .notNull()
+      .references(() => productsTable.id, { onDelete: "cascade" }),
+    quantity: integer("quantity").notNull().default(1),
+    createdAt: timestamp("created_at").defaultNow().notNull(),
+  },
+  (t) => [
+    unique("cart_product_unique").on(t.cartId, t.productId),
+    check("quantity_positive", sql`${t.quantity} > 0`),
+  ],
+);
 // ============ JUNCTION TABLE (many-to-many) ============
 export const categoriesToSubCategoriesTable = pgTable(
   "categories_to_sub_categories",
@@ -80,6 +109,8 @@ export const dbRelations = defineRelations(
     subCategoriesTable,
     productsTable,
     categoriesToSubCategoriesTable,
+    cartsTable,
+    cartItemsTable,
   },
   (r) => ({
     categoriesTable: {
@@ -107,6 +138,22 @@ export const dbRelations = defineRelations(
       subCategory: r.one.subCategoriesTable({
         from: r.productsTable.subCategoryId,
         to: r.subCategoriesTable.id,
+      }),
+    },
+    cartsTable: {
+      items: r.many.cartItemsTable({
+        from: r.cartsTable.id,
+        to: r.cartItemsTable.cartId,
+      }),
+    },
+    cartItemsTable: {
+      cart: r.one.cartsTable({
+        from: r.cartItemsTable.cartId,
+        to: r.cartsTable.id,
+      }),
+      product: r.one.productsTable({
+        from: r.cartItemsTable.productId,
+        to: r.productsTable.id,
       }),
     },
   }),

@@ -4,10 +4,8 @@ import CartButton from "../../shared/cart-btn/CartButton";
 import Search from "../../features/search/Search";
 import { FaRegStar } from "react-icons/fa";
 import { FiUser } from "react-icons/fi";
-const actions = [
-  { id: 2, icon: FiUser, label: "Login / Sign Up" },
-  { id: 3, icon: FaRegStar, label: "Faviouate" },
-];
+import { Show, SignInButton, UserButton } from "@clerk/nextjs";
+const actions = [{ id: 3, icon: FaRegStar, label: "Faviouate" }];
 function HeaderActions() {
   return (
     <div className="flex">
@@ -30,6 +28,17 @@ function HeaderActions() {
             </li>
           );
         })}
+
+        <li>
+          <Show when={"signed-out"}>
+            <SignInButton>
+              <FiUser size={28} className="cursor-pointer" />
+            </SignInButton>
+          </Show>
+          <Show when={"signed-in"}>
+            <UserButton />
+          </Show>
+        </li>
       </ul>
 
       <CartButton />

@@ -4,7 +4,8 @@ import "./globals.css";
 import { ReduxProvider } from "@/RTK/Provider";
 import ToUpBtn from "./(components)/features/toup-btn/ToUpBtn";
 import QueryProvider from "./(components)/providers/QueryProvider";
-
+import { ClerkProvider } from "@clerk/nextjs";
+import { Toaster } from "@/components/ui/toast";
 const dmSans = DM_Sans({
   subsets: ["latin"],
   weight: ["300", "400", "600", "800"],
@@ -18,14 +19,17 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${dmSans.className} h-full antialiased`}>
-      <QueryProvider>
-        <ReduxProvider>
-          <body className="min-h-full flex flex-col">
-            <ToUpBtn />
-            {children}
-          </body>
-        </ReduxProvider>
-      </QueryProvider>
+      <ClerkProvider>
+        <QueryProvider>
+          <ReduxProvider>
+            <body className="min-h-full flex flex-col">
+              <ToUpBtn />
+              {children}
+              <Toaster />
+            </body>
+          </ReduxProvider>
+        </QueryProvider>
+      </ClerkProvider>
     </html>
   );
 }
