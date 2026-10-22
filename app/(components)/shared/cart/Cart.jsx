@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useQuery } from "@tanstack/react-query";
 import { getCart } from "@/services/cart";
 import { useAuth } from "@clerk/nextjs";
+import CartFooter from "../cart-footer/CartFooter";
 
 function Cart() {
   const dispatch = useDispatch();
@@ -17,12 +18,19 @@ function Cart() {
   });
 
   const cartItems = data?.items ?? [];
+
+  const totlaPrice = cartItems.reduce(
+    (sum, item) => sum + Number(item.product.price) * item.quantity,
+    0,
+  );
   return (
     <div
       className={`fixed z-50 top-0 ${isCartOpen ? "right-0" : "-right-full"} transition-all duration-500 ease-in-out bg-white shadow-md w-full md:max-w-sm h-full`}
     >
       <CartHeader dispatch={dispatch} items={cartItems} />
       <CartContent items={cartItems} />
+
+      {cartItems.length > 0 && <CartFooter totlaPrice={totlaPrice} />}
     </div>
   );
 }

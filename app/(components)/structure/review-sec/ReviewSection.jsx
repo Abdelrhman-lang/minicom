@@ -42,7 +42,6 @@ function ReviewSection() {
             slidesPerGroupSmall={1}
             slidesPerGroupLarge={2}
           >
-            {/* <button onClick={() => console.log(data.reviews)}>click</button> */}
             {data.reviews?.map((review) => {
               return (
                 <SwiperSlide key={review.id}>

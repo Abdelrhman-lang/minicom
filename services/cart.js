@@ -3,7 +3,7 @@
 import { db } from "@/config/db/db";
 import { cartItemsTable, cartsTable } from "@/config/db/schema";
 import { auth } from "@clerk/nextjs/server";
-import { and, eq, sql } from "drizzle-orm";
+import { and, eq, gt, sql } from "drizzle-orm";
 
 // =============================== ADD TO CART ================================================
 export async function addToCart(productId, quantity = 1) {
@@ -91,5 +91,67 @@ export async function deleteItemFromCart(itemId) {
   } catch (error) {
     console.error("REMOVE_FROM_CART_ERROR:", error);
     return { success: false, error: "Failed to remove item" };
+  }
+}
+
+// ====================================== INCREMENT QUANTITY ====================================================
+export async function incrementQuantity(itemId) {
+  const { userId } = await auth();
+
+  if (!userId) return { success: false, error: "Unauthorized" };
+  if (!itemId) return { success: false, error: "Invalid data" };
+
+  try {
+    const [cart] = await db
+      .select()
+      .from(cartsTable)
+      .where(eq(cartsTable.userId, userId));
+
+    if (!cart) return { success: false, error: "Cart not found" };
+
+    await db
+      .update(cartItemsTable)
+      .set({ quantity: sql`${cartItemsTable.quantity} + 1` })
+      .where(
+        and(eq(cartItemsTable.id, itemId), eq(cartItemsTable.cartId, cart.id)),
+      );
+
+    return { success: true };
+  } catch (error) {
+    console.error("INCREMENT_QUANTITY_ERROR:", error);
+    return { success: false, error: "Failed to increase quantity" };
+  }
+}
+
+// =================================================== DECREMENT QUANTITY ==============================================
+export async function decrementQuantity(itemId) {
+  const { userId } = await auth();
+
+  if (!userId) return { success: false, error: "Unauthorized" };
+  if (!itemId) return { success: false, error: "invalid data" };
+
+  try {
+    const [cart] = await db
+      .select()
+      .from(cartsTable)
+      .where(eq(cartsTable.userId, userId));
+
+    if (!cart) return { success: false, error: "Cart not found" };
+
+    await db
+      .update(cartItemsTable)
+      .set({ quantity: sql`${cartItemsTable.quantity} - 1` })
+      .where(
+        and(
+          eq(cartItemsTable.id, itemId),
+          eq(cartItemsTable.cartId, cart.id),
+          gt(cartItemsTable.quantity, 1),
+        ),
+      );
+
+    return { success: true };
+  } catch (error) {
+    console.error("DECREMENT_QUANTITY_ERROR:", error);
+    return { success: false, error: "Failed to decrease quantity" };
   }
 }
